@@ -1,5 +1,4 @@
 import Article from "../article/Article"
-import postsData from '../../data/posts'
 import { useState } from "react"
 import AddArticle from "../AddArticle/AddArticle"
 
@@ -22,24 +21,25 @@ const Main = () => {
 
     return (
         <main>
-            <div className="container">
+            <button className="btn btn-primary" onClick={handleShowForm}>Prideti Naujiena</button>
 
-                <button className="btn btn-primary" onClick={handleShowForm}>Prideti Naujiena</button>
+            <h1>Naujienos</h1>
 
-                <h1>Naujienos</h1>
-
+            <div className="d-flex flex-row flex-wrap gap-3">
                 {posts.map(post => <Article 
                     title={post.title} 
                     description={post.description}
                     key={post.id}/>
                 )}
-
-                {clicked && 
-                <div>
-                    <h2>Prideti naujiena</h2> 
-                    <AddArticle onSave={handleFormData}/>
-                </div>}
             </div>
+
+            
+
+            {clicked && 
+            <div>
+                <h2>Prideti naujiena</h2> 
+                <AddArticle onSave={handleFormData}/>
+            </div>}
         </main>
     )
 }

@@ -2,10 +2,12 @@ import Article from "../article/Article"
 import { useState } from "react"
 import AddArticle from "../AddArticle/AddArticle"
 
+import CatBreedSearch from "../CatBreedSearch/CatBreedSearch"
+
 const Main = () => {
 
     const [clicked, setClicked] = useState(false);
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
 
     const handleShowForm = () => {
         setClicked(true)
@@ -19,11 +21,25 @@ const Main = () => {
         setClicked(false)
     }
 
+   
+
+  
+
     return (
         <main>
+
+            <CatBreedSearch/>
+
+
             <button className="btn btn-primary" onClick={handleShowForm}>Prideti Naujiena</button>
 
             <h1>Naujienos</h1>
+
+            {clicked && 
+            <div>
+                <h2>Prideti naujiena</h2> 
+                <AddArticle onSave={handleFormData}/>
+            </div>}
 
             <div className="d-flex flex-row flex-wrap gap-3">
                 {posts.map(post => <Article 
@@ -32,14 +48,6 @@ const Main = () => {
                     key={post.id}/>
                 )}
             </div>
-
-            
-
-            {clicked && 
-            <div>
-                <h2>Prideti naujiena</h2> 
-                <AddArticle onSave={handleFormData}/>
-            </div>}
         </main>
     )
 }
